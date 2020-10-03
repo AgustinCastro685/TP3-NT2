@@ -30,9 +30,17 @@ new Vue({
         var danio = this.calcularHeridas(max,min);
 
         this.saludMonstruo -= danio;
+
+        let turno = {
+            esJugador:true,
+            text:`EL JUGADOR GOLPEA AL MONSTRUO POR ${danio}`
+        }
+        this.registrarEvento(turno);
+
         if(this.verificarGanador()){
             return;
         }
+
         this.ataqueDelMonstruo();
         },
 
@@ -42,6 +50,12 @@ new Vue({
         var danioEspecial = this.calcularHeridas(max,min);
         
         this.saludMonstruo -= danioEspecial;
+        
+        let turno = {
+            esJugador:true,
+            text:`EL JUGADOR GOLPEA DURAMENTE AL MONSTRUO POR ${danioEspecial}`
+        }
+        this.registrarEvento(turno);
         
         if(this.verificarGanador()){
             return;
@@ -72,6 +86,11 @@ new Vue({
         var danioMonstruo = this.calcularHeridas(max,min);
 
         this.saludJugador -= danioMonstruo;
+        let turno = {
+            esJugador:true,
+            text:`EL MONSTRUO GOLPEA AL JUGADOR POR ${danioMonstruo}`
+        }
+        this.registrarEvento(turno);
         this.verificarGanador();
         },
 
